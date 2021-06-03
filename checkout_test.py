@@ -12,12 +12,13 @@ def test_scan_multiple_items():
     checkout.scan(["Milk", "Apple"])
     assert checkout.basket["Apple"] == 1 and checkout.basket["Milk"] == 1
 
-def test_check_basket():
-    checkout = Checkout()
-    checkout.scan(["Apple", "Banana", "Apple"])
-    assert checkout.check_basket("Apple") == 2
-
 def test_total_price():
     checkout = Checkout()
     checkout.scan(["Apple", "Banana", "Apple"])
     assert checkout.total_price() == 0.85
+
+def test_check_total_price_with_offers():
+    checkout = Checkout()
+    checkout.scan(["Steak Pie", "Steak Pie", "Steak Pie", "Apple"])
+    assert checkout.total_price() == 7.30
+    

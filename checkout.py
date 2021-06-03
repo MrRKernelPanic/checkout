@@ -12,20 +12,17 @@ class Checkout:
         else:
             self.basket[item] = 1
         
-    def check_basket(self, basket_items):
-        return self.basket.get(basket_items)
-
     def total_price(self):
         running_total=0
         for product, amount in self.basket.items():
             if product == "Apple":
-                running_total += 0.3 * amount
+                running_total += (amount // 6 * 1.5) + (amount % 6 * 0.3)
             elif product == "Banana":
-                running_total += 0.25 * amount
+                running_total += (amount // 5 * 1.0) + (amount % 5 * 0.25)
             elif product == "Steak Pie":
-                running_total += 2.50 * amount
+                running_total += (amount // 2 * 4.5) + (amount % 2 * 2.5)
             elif product == "Milk":
                 running_total += 1.50 * amount
-            else:
-                running_total += 4.75 * amount
+            elif product == "Washing Powder":
+                running_total += (amount // 2 * 9) + (amount % 2 * 4.75)
         return running_total
