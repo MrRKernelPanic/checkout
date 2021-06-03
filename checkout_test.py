@@ -1,21 +1,32 @@
 import pytest
 
-from checkout import scan
+from checkout import Checkout
 
 def test_scan_item_apple():
-    assert scan(["Apple"]) == 0.30
+    checkout = Checkout()
+    assert checkout.scan(["Apple"]) == 0.30
 
 def test_scan_item_banana():
-    assert scan(["Banana"]) == 0.25
+    checkout = Checkout()
+    assert checkout.scan(["Banana"]) == 0.25
 
 def test_scan_item_steak_pie():
-    assert scan(["Steak Pie"]) == 2.50
+    checkout = Checkout()
+    assert checkout.scan(["Steak Pie"]) == 2.50
 
 def test_scan_item_milk():
-    assert scan(["Milk"]) == 1.50
+    checkout = Checkout()
+    assert checkout.scan(["Milk"]) == 1.50
 
 def test_scan_item_washing_powder():
-    assert scan(["Washing Powder"]) == 4.75
+    checkout = Checkout()
+    assert checkout.scan(["Washing Powder"]) == 4.75
 
 def test_scan_multiple_items():
-    assert scan(["Milk", "Apple"]) == 1.80
+    checkout = Checkout()
+    assert checkout.scan(["Milk", "Apple"]) == 1.80
+
+def test_check_basket():
+    checkout = Checkout()
+    checkout.scan(["Apple", "Banana", "Apple"])
+    assert checkout.check_basket("Apple") == 2
