@@ -1,6 +1,39 @@
 class Checkout:
+
     def __init__(self):
-        self.basket = {}    
+        self.basket = {}
+        self.prices = {
+            "Apple": {
+                "price": 0.30,
+                "sku": "A",
+                "offer_amount": 6,
+                "offer_price": 1.50
+            },
+            "Banana": {
+                "price": 0.25,
+                "sku": "B",
+                "offer_amount": 5,
+                "offer_price": 1.00
+            },
+            "Steak Pie": {
+                "price": 2.5,
+                "sku": "C",
+                "offer_amount": 2,
+                "offer_price": 4.50
+            },
+            "Milk": {
+                "price": 1.50,
+                "sku": "D",
+                "offer_amount": 1,
+                "offer_price": 1.50
+            },
+            "Washing Powder": {
+                "price": 4.75,
+                "sku": "E",
+                "offer_amount": 2,
+                "offer_price": 9.00
+            }
+        }    
 
     def scan(self, items):
         for item in items:
@@ -15,14 +48,14 @@ class Checkout:
     def total_price(self):
         running_total=0
         for product, amount in self.basket.items():
-            if product == "Apple":
-                running_total += (amount // 6 * 1.5) + (amount % 6 * 0.3)
-            elif product == "Banana":
-                running_total += (amount // 5 * 1.0) + (amount % 5 * 0.25)
-            elif product == "Steak Pie":
-                running_total += (amount // 2 * 4.5) + (amount % 2 * 2.5)
-            elif product == "Milk":
-                running_total += 1.50 * amount
-            elif product == "Washing Powder":
-                running_total += (amount // 2 * 9) + (amount % 2 * 4.75)
+            product_info = self.prices[product]
+            product_div = ((amount // product_info["offer_amount"]) * product_info["offer_price"])
+            product_mod = ((amount % product_info["offer_amount"]) * product_info["price"])
+            print("product:"+ str(product))
+            print("Amount:" + str(amount))
+            print("Div:" + str(product_div))
+            print("Mod:" + str(product_mod))
+            print("offer amount:" + str(product_info["offer_amount"]))
+            print("offer_price:" + str(product_info["offer_price"]))
+            running_total += ( product_div + product_mod)
         return running_total
