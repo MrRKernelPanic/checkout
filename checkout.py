@@ -51,12 +51,6 @@ class Checkout:
             product_info = self.prices[product]
             product_deal = self._calculate_product_deal(product, amount)
             product_remainder = ((amount % product_info["offer_amount"]) * product_info["price"])
-            print("product:"+ str(product))
-            print("Amount:" + str(amount))
-            print("Div:" + str(product_deal))
-            print("Mod:" + str(product_remainder))
-            print("offer amount:" + str(product_info["offer_amount"]))
-            print("offer_price:" + str(product_info["offer_price"]))
             running_total += ( product_deal + product_remainder)
         return running_total
 

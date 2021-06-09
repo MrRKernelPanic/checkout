@@ -17,12 +17,6 @@ def test_total_price():
     checkout.scan(["Apple", "Banana", "Apple"])
     assert checkout.total_price() == 0.85
 
-def test_dead():
+def test_deal():
     checkout = Checkout()
     assert checkout._calculate_product_deal("Apple",22) == 4.50
-
-
-#def test_check_total_price_with_offers():
-#    checkout = Checkout()
-#    checkout.scan(["Steak Pie", "Steak Pie", "Steak Pie", "Apple"])
-#    assert checkout.total_price() == 7.30   
